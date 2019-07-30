@@ -15,26 +15,26 @@ This document focuses on developing requirements for the developing smart data c
 
 ## Design
 
-Developing and enforcing data service contracts require development of three independent contract templates:
-- Service Contract: Stipulate the rules that are being agreed between data producers and consumers in advance 
-- Provision Contract: Delivers the data service from producer to consumer 
-- Checker Contract: Checks that the data service relayed in Provision Contract is in line with Service Contract, and calculates any rewards and penalties
+Each contracts is characterised by a string of variables and functions:
+- Variables store contract details, details of services provided, and updated account balances for the data producer and consumer after the services are rendered. 
+- Contract is supported by 3 key functions which allow the producers to agree to the terms of the contract, acklowledge receipt of service received, and generate updated balances after the service is checked against the contract.
 
+Detailed definitions for these variables and functions are shared below. 
 
 ### Variables:
 
-- Service contract component
+- Service Contract Component
   - Contract ID: Unique ID for the contract  
-  - Data Consumer: Address of the business divsion that is expected to receive the data, and remunerate the data producer based on the quality of service they provide.
-  - Data Producer: Address of business division that is expected to produce the data, and receive renumeration in exchange for the service they provide
-  - Data Service: The service against that is expected to be provided by the producer the consumer - a most basic form of this service can involve making sure the service provider adheres to an pre-agreed data schema
-  - Service Start Date: Dates between which contract is valid
-  - Service End Date:
-  - Service Reward: Rewards that applies hen terms of service are adhered to
+  - Data Consumer: Address of the business divsion that is expected to receive the data; addresses are also mapped to an account balance which stores the amount of money balance owned by the consumer/producer at any point in time 
+  - Data Producer: Address of business division that is expected to produce the data; addresses are also mapped to an account balance which stores the amount of money balance owned by the consumer/producer at any point in time
+  - Data Service: The service that is expected to be provided by the producer the consumer e.g., a most basic form of this service can involve making sure the service provider adheres to an pre-agreed data schema
+  - Service Start Date: Dates between which contractual agreements between producer and consumer begin
+  - Service End Date: Dates between which contractual agreements between producer and consumer end
+  - Service Reward: Rewards that applies when terms of service are adhered to - these are expected to be denominated in a currency of choice 
   - Service Penalty: Penalties that apply when terms of service are not adhered to 
-  - Contract State
+  - Contract State: 
 
-- Service provision component
+- Service Provision Component
   - Service ID: State of the contract, if it has been viewed, signed, and checked
   - Service Provision:
   - Service Date:
@@ -49,20 +49,19 @@ Developing and enforcing data service contracts require development of three ind
 - Sign Service:
 - Check Contract: Checks if service provision is in line with the data service agreemenet, calculates rewards/penalties, and updates consumers and producer's account balance.
 
+## Flow:
+1. Data Producer and Consumer review the terms of the contract and endorse it with their digital signature - this updates the Contract State to "Signed"
+2. Data Producer submits the service to the contract
 
-
+## Rationale
 [A discussion of alternate approaches and the trade offs, advantages, and disadvantages of the specified approach.]
+
 **Centralisation**
-
-
-## Implementation
-
-
 
 [A description of the steps in the implementation.]
 
 ## Open issues (if applicable)
+- Some date variables declared in the contract (e.g., Contract Date, Service Date) and referntial static data (e.g., Contract ID, Service ID) would need appropriate control mechanisms to ensure they are received from a legitimate source or are supported by a consistent methodology, and cannot be changed in an unauthorised manner 
+- Persistence of contracts in a blockchain will yield greater benefits, but will implementation considerations in an enterprise environment will require careful review of existing data models and system requirements
 
-[A discussion of issues relating to this proposal for which the author does not
-know the solution. This section may be omitted if there are none.]
-
+-  
