@@ -12,7 +12,6 @@ For markets to function effectively, theses services need to be governed by data
 
 This document focuses on developing requirements for the developing smart data contract templates that can improve data quality (1).
 
-
 ## Design
 
 Each contracts is characterised by a string of variables and functions:
@@ -25,31 +24,34 @@ Detailed definitions for these variables and functions are shared below.
 
 - Service Contract Component
   - Contract ID: Unique ID for the contract  
-  - Data Consumer: Address of the business divsion that is expected to receive the data; addresses are also mapped to an account balance which stores the amount of money balance owned by the consumer/producer at any point in time 
-  - Data Producer: Address of business division that is expected to produce the data; addresses are also mapped to an account balance which stores the amount of money balance owned by the consumer/producer at any point in time
+  - Data Consumer: Address of the business divsion that is expected to receive the data service; addresses are also mapped to an account balance which stores the amount of money balance owned by the consumer/producer at any point in time 
+  - Data Producer: Address of business division that is expected to produce the data service; addresses are also mapped to an account balance which stores the amount of money balance owned by the consumer/producer at any point in time
   - Data Service: The service that is expected to be provided by the producer the consumer e.g., a most basic form of this service can involve making sure the service provider adheres to an pre-agreed data schema
   - Service Start Date: Dates between which contractual agreements between producer and consumer begin
   - Service End Date: Dates between which contractual agreements between producer and consumer end
-  - Service Reward: Rewards that applies when terms of service are adhered to - these are expected to be denominated in a currency of choice 
-  - Service Penalty: Penalties that apply when terms of service are not adhered to 
-  - Contract State: 
+  - Service Reward: Rule for calculating rewards that applies when terms of service are adhered to - rewards  are expected to be denominated in a currency preferred by producer and consumer
+  - Service Penalty: Rule for calculating penalties that apply when terms of service are not adhered to - penalties are expected to be denominated in a currency preferred by producer and consumer
+  - Contract State: Status of contract - this is a dynamic variable for tracking if parties endorse the contract; status remains "Unsigned" by default until both parties digitally sign the contract, in which case the status changes to "signed"
 
 - Service Provision Component
-  - Service ID: State of the contract, if it has been viewed, signed, and checked
-  - Service Provision:
-  - Service Date:
-  - Service State:
+  - Service ID: Unique ID for each service instance rendered by producer; a contract can have multiple service instances
+  - Service Provision: Actual data service shared by producer with consumer as per contractual agreements, for a particular service instance
+  - Service Date: Date on which service is provided
+  - Service State: Status of the service -  this is a dynamic variable for tracking 2 flows:
+      1. If producer "signs off" on the delivery of the service, and if consumer acknowledges this; status remains "null" until both parties agree to endorse the service with their digital signature, in which case status changes to "signed"  
+      2. If the service relayed by producer meets the terms of the agreement, in which case status further changes to "valid", not, in which case status changes to "invalid"  
 
 - Service Validation Component
-  - Producer Account Balance:
-  - Consumer Account Balance:
+  - Producer Account Balance: Producer's account balance - this is a dynamic variable that is updated with net remuneration (the net of rewards - penalties is added to the balance) every time a service instance is deliver and the "check contract" function is triggered 
+  - Consumer Account Balance: Consumer's account balance - this is a dynamic variable that is updated with net remuneration (the net of rewards - penalties is deducted from the balance) every time a service instance is deliver and the "check contract" function is triggered 
   
 ### Functions:
- - Sign Contract: Allows Data Producer and Data Consumer to sign the terms relayed in Data Service, Service Reward and Service Penalty; invoking this function also changes the state of the contract to "Signed"
-- Sign Service:
-- Check Contract: Checks if service provision is in line with the data service agreemenet, calculates rewards/penalties, and updates consumers and producer's account balance.
+ - Sign Contract: Allows Data Producer and Data Consumer to sign the terms relayed in contract (in particular, data service expected, contractual dates, rewards and penalties) 
+ - Sign Service: Allows Data Producer and Data Consumer to acknowledge the deliver of a service instance
+- Check Contract:Checks if service provision is in line with the data service agreemenet, calculates rewards/penalties, and updates consumers and producer's account balance -  automatically triggered once the  Sign Service Function is triggered
 
 ## Flow:
+A high level workflow for the contractual behaviour is detailed below in order of chronology:
 1. Data Producer and Consumer review the terms of the contract and endorse it with their digital signature - this updates the Contract State to "Signed"
 2. Data Producer submits the service to the contract
 
@@ -60,8 +62,8 @@ Detailed definitions for these variables and functions are shared below.
 
 [A description of the steps in the implementation.]
 
-## Open issues (if applicable)
-- Some date variables declared in the contract (e.g., Contract Date, Service Date) and referntial static data (e.g., Contract ID, Service ID) would need appropriate control mechanisms to ensure they are received from a legitimate source or are supported by a consistent methodology, and cannot be changed in an unauthorised manner 
+## Open issues 
+- Source data for variables declared in the contract would need appropriate control mechanisms to ensure they are received from a legitimate source or are supported by a consistent methodology, and cannot be changed in an unauthorised manner 
 - Persistence of contracts in a blockchain will yield greater benefits, but will implementation considerations in an enterprise environment will require careful review of existing data models and system requirements
 
 -  
