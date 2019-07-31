@@ -1,4 +1,4 @@
-# Title: Intercompany data contracts
+# Intercompany data contracts
 
 ## Background
 
@@ -39,7 +39,7 @@ Detailed definitions for these variables and functions are shared below.
   - Service Date: Date on which service is provided
   - Service State: Status of the service -  this is a dynamic variable for tracking 2 flows:
       1. If producer "signs off" on the delivery of the service, and if consumer acknowledges this; status remains "Null" until both parties agree to endorse the service with their digital signature, in which case status changes to "Signed"  
-      2. If the service relayed by producer meets the terms of the agreement, in which case status further changes to "Valid", not, in which case status changes to "invalid"  
+      2. If the service relayed by producer meets the terms of the agreement, in which case status further changes to "Valid", or if not, status changes to "Invalid"  
 
 - Service Validation Component
   - Producer Account Balance: Producer's account balance - this is a dynamic variable that is updated with net remuneration (the net of rewards - penalties is added to the balance) every time a service instance is deliver and the "check contract" function is triggered 
@@ -50,21 +50,14 @@ Detailed definitions for these variables and functions are shared below.
  - Sign Service: Allows Data Producer and Data Consumer to acknowledge the deliver of a service instance
 - Check Contract: Checks if service provision is in line with the data service agreemenet, calculates rewards/penalties, and updates consumers and producer's account balance - automatically triggered once the Sign Service Function is triggered
 
-## Flow:
-A high level workflow for detailing evoolution of contractual and states is detailed below:
+## Flow
+A high level workflow for detailing evolution of contractual is detailed below:
 1. Data Producer and Consumer review the terms of the contract and endorse it with their digital signature - this updates the Contract State to "Signed"
-2. Data Producer submits the service to the contract
-
-## Rationale
-[A discussion of alternate approaches and the trade offs, advantages, and disadvantages of the specified approach.]
-
-**Centralisation**
-
-[A description of the steps in the implementation.]
+2. Data Producer submits the service to the contract, and Data Consumer receives it; both submission and receipt are endorsed with respective digital signatures - this update Service State to "Signed"
+3. Service is checked against contractual agreements, following which Service State is updated further to either "Valid" or Invalid"
+4. Rewards/penalties are calculated based on contractual terms and validation checks performed, and account balances are updated 
 
 ## Open issues 
 - Source data for variables declared in the contract would need appropriate control mechanisms to ensure they are received from a legitimate source or are supported by a consistent methodology, and cannot be changed in an unauthorised manner 
 - Data services can only include data that is be known in advance 
 - Persistence of contracts in a blockchain will yield greater benefits, but will implementation considerations in an enterprise environment will require careful review of existing data models and system requirements
-
--  
