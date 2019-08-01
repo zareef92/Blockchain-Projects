@@ -50,6 +50,9 @@ Detailed definitions for these variables and functions are shared below.
  - Sign Service: Allows Data Producer and Data Consumer to acknowledge the delivery of a service instance
 - Check Contract: Checks if service provision is in line with the data service agreement, calculates rewards/penalties, and updates Consumer’s and Producer's account balance - automatically triggered once the Sign Service Function is triggered
 
+
+![alt text](https://github.com/zareef92/Blockchain-Projects/blob/master/Picture1.png)
+
 ## Flow
 A high level workflow for detailing evolution of contractual is detailed below:
 1. Data Producer and Consumer review the terms of the contract and endorse it with their digital signature - this updates the Contract State to "Signed"
