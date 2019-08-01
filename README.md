@@ -12,6 +12,9 @@ For markets to function effectively, these services need to be governed by data 
 
 This document focuses on developing requirements for the developing smart data contract templates that can improve data quality (1).
 
+
+![alt text](https://github.com/zareef92/Blockchain-Projects/blob/master/Figure1.png)
+
 ## Design
 
 Each contract is characterised by a string of variables and functions:
@@ -55,10 +58,14 @@ Detailed definitions for these variables and functions are shared below.
 
 ## Flow
 A high level workflow for detailing evolution of contractual is detailed below:
-1. Data Producer and Consumer review the terms of the contract and endorse it with their digital signature - this updates the Contract State to "Signed"
-2. Data Producer submits the service to the contract, and Data Consumer receives it; both submission and receipt are endorsed with respective digital signatures - this update Service State to "Signed"
-3. Service is checked against contractual agreements, following which Service State is updated further to either "Valid" or Invalid"
-4. Rewards/penalties are calculated based on contractual terms and validation checks performed, and account balances for Consumer and Producer are updated 
+1. Agreement: Data Producer and Consumer review the terms of the contract and endorse it with their digital signature - this updates the Contract State to "Signed"
+2. Provision: Data Producer submits the service to the contract, and Data Consumer receives it; both submission and receipt are endorsed with respective digital signatures - this update Service State to "Signed"
+3. Validation & Payment: 
+  - Service is checked against contractual agreements, following which Service State is updated further to either "Valid" or Invalid"
+  - Rewards/penalties are calculated based on contractual terms and validation checks performed, and account balances for Consumer and Producer are updated 
+
+![alt text](https://github.com/zareef92/Blockchain-Projects/blob/master/Figure3.png)
+
 
 ## Open issues 
 - Source data for variables declared in the contract would need appropriate control mechanisms to ensure they are received from a legitimate source or are supported by a consistent methodology, and cannot be changed in an unauthorised manner 
