@@ -42,8 +42,8 @@ Detailed definitions for these variables and functions are shared below.
       2. If the service relayed by producer meets the terms of the agreement, in which case status further changes to "Valid", or if not, status changes to "Invalid"  
 
 - Service Validation Component
-  - Producer Account Balance: Producer's account balance - this is a dynamic variable that is updated with net remuneration (the net of rewards - penalties are added to the balance) every time a service instance is delivered and the "check contract" function is triggered 
-  - Consumer Account Balance: Consumer's account balance - this is a dynamic variable that is updated with net remuneration (the net of rewards - penalties is deducted from the balance) every time a service instance is delivered and the "check contract" function is triggered 
+  - Producer Account Balance: Dynamic variable that is updated with net remuneration (the net of rewards - penalties are added to the balance) every time a service instance is delivered and the "check contract" function is triggered 
+  - Consumer Account Balance:  Dynamic variable that is updated with net remuneration (the net of rewards - penalties is deducted from the balance) every time a service instance is delivered and the "check contract" function is triggered 
   
 ### Functions:
 - Sign Contract: Allows Data Producer and Data Consumer to endorse the terms codified in contract with their digital signature (in particular, data service expected, contractual dates, rewards and penalties) 
